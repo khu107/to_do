@@ -28,7 +28,8 @@ export default function App() {
   const bodyChangeHandler = (e) => {
     setBody(e.target.value);
   };
-  const clickHandler = () => {
+  const clickHandler = (e) => {
+    e.preventDefault();
     const newObj = {
       id: user.length + 1,
       title,
@@ -58,7 +59,7 @@ export default function App() {
   return (
     <div className="App">
       <div className="header">
-        <div className="form-body">
+        <form onSubmit={clickHandler} className="form-body">
           <div className="input">
             <label className="form-label">제목:</label>
             <input
@@ -66,6 +67,7 @@ export default function App() {
               type="text"
               value={title}
               onChange={titleChangeHandler}
+              required
             />
             <label className="form-label">내용:</label>
             <input
@@ -73,16 +75,13 @@ export default function App() {
               type="text"
               value={body}
               onChange={bodyChangeHandler}
+              required
             />
           </div>
-          <Button
-            onClick={clickHandler}
-            className="add-button"
-            variant="success"
-          >
+          <Button className="add-button" variant="success" type="submit">
             추가하기
           </Button>{' '}
-        </div>
+        </form>
         <div className="list-cont">
           <h2>Working... 🔥</h2>
           <div className="list-wrapper">
