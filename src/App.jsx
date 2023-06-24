@@ -90,7 +90,12 @@ export default function App() {
               .filter((v) => v.isDone === false)
               .map((e) => {
                 return (
-                  <Working e={e} chek={chek} removeHandler={removeHandler} />
+                  <Working
+                    key={e.id}
+                    e={e}
+                    chek={chek}
+                    removeHandler={removeHandler}
+                  />
                 );
               })}
           </div>
@@ -100,7 +105,12 @@ export default function App() {
               .filter((v) => v.isDone === true)
               .map((e) => {
                 return (
-                  <Working e={e} chek={chek} removeHandler={removeHandler} />
+                  <Working
+                    key={e.id}
+                    e={e}
+                    chek={chek}
+                    removeHandler={removeHandler}
+                  />
                 );
               })}
           </div>
