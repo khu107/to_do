@@ -2,6 +2,7 @@ import 'App.css';
 import Button from 'react-bootstrap/Button';
 
 import { useState } from 'react';
+import Working from 'components/Working';
 
 export default function App() {
   const [user, setUser] = useState([
@@ -39,12 +40,10 @@ export default function App() {
     setTitle('');
     setBody('');
   };
-
   const removeHandler = (id) => {
     const removeList = user.filter((user) => user.id !== id);
     setUser(removeList);
   };
-
   const chek = (id) => {
     setUser(
       user.map((v) => {
@@ -55,6 +54,7 @@ export default function App() {
       })
     );
   };
+
   return (
     <div className="App">
       <div className="header">
@@ -90,28 +90,7 @@ export default function App() {
               .filter((v) => v.isDone === false)
               .map((e) => {
                 return (
-                  <div key={e.id} className="todo-cont">
-                    <div>
-                      <h2>{e.title}</h2>
-                      <div>{e.body}</div>
-                    </div>
-                    <div className="todo-btn">
-                      <Button
-                        className="btn1"
-                        onClick={() => removeHandler(e.id)}
-                        variant="outline-danger"
-                      >
-                        삭제하기
-                      </Button>
-                      <Button
-                        className="btn2"
-                        onClick={() => chek(e.id)}
-                        variant="outline-success"
-                      >
-                        완료
-                      </Button>
-                    </div>
-                  </div>
+                  <Working e={e} chek={chek} removeHandler={removeHandler} />
                 );
               })}
           </div>
@@ -121,28 +100,7 @@ export default function App() {
               .filter((v) => v.isDone === true)
               .map((e) => {
                 return (
-                  <div key={e.id} className="todo-cont">
-                    <div>
-                      <h2>{e.title}</h2>
-                      <div>{e.body}</div>
-                    </div>
-                    <div className="todo-btn">
-                      <Button
-                        className="btn1"
-                        onClick={() => removeHandler(e.id)}
-                        variant="outline-danger"
-                      >
-                        삭제하기
-                      </Button>
-                      <Button
-                        className="btn2"
-                        onClick={() => chek(e.id)}
-                        variant="outline-success"
-                      >
-                        최소
-                      </Button>
-                    </div>
-                  </div>
+                  <Working e={e} chek={chek} removeHandler={removeHandler} />
                 );
               })}
           </div>
